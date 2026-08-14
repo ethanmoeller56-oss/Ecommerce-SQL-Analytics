@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This project analyzes more than **1 million e-commerce transactions** using PostgreSQL to evaluate sales performance, product trends, customer behavior, and geographic markets.
+This project analyzes more than 1 million e-commerce transactions using PostgreSQL to evaluate sales performance, product trends, customer behavior, and geographic markets.
 
 The goal was to build an end-to-end SQL analytics project that moves beyond basic querying and demonstrates how SQL can be used to clean transactional data, investigate data-quality issues, calculate business KPIs, analyze customer behavior, and generate actionable business insights.
 
-The analysis covers transactions from **December 2009 through December 2011** for a UK-based online retailer.
+The analysis covers transactions from December 2009 through December 2011 for a UK-based online retailer.
 
 ---
 
@@ -27,7 +27,7 @@ The analysis was designed to answer several key business questions:
 
 ## Dataset
 
-The dataset contains **1,067,371 transaction records** and includes:
+The dataset contains 1,067,371 transaction records and includes:
 
 - Invoice number
 - Product stock code
@@ -38,7 +38,7 @@ The dataset contains **1,067,371 transaction records** and includes:
 - Customer ID
 - Country
 
-All monetary values are reported in **British pounds (GBP)**.
+All monetary values are reported in British pounds (GBP).
 
 The raw CSV is not included in this repository because of its size. Additional information about the dataset, source, schema, and data-quality considerations can be found in [`data/README.md`](data/README.md).
 
@@ -89,10 +89,10 @@ The analysis identified:
 
 The analysis identified:
 
-- **32,907 groups** of identical transaction records
-- **34,335 potential excess duplicate rows**
-- Approximately **£496,334** in gross revenue associated with potential excess duplicates
-- Potential duplicates represented approximately **2.37% of gross revenue**
+- 32,907 groups of identical transaction records
+- 34,335 potential excess duplicate rows
+- Approximately £496,334 in gross revenue associated with potential excess duplicates
+- Potential duplicates represented approximately 2.37% of gross revenue
 
 The source data does not contain a unique transaction-line identifier, making it impossible to reliably distinguish erroneous duplicates from legitimate repeated line items.
 
@@ -118,10 +118,10 @@ The cleaned sales dataset contained:
 
 Monthly revenue analysis revealed clear seasonal patterns.
 
-Sales accelerated substantially during **September through November**, with November producing approximately:
+Sales accelerated substantially during September through November, with November producing approximately:
 
-- **£1.47M in November 2010**
-- **£1.51M in November 2011**
+- £1.47M in November 2010
+- £1.51M in November 2011
 
 Year-over-year analysis also showed stronger performance during several months in the second half of 2011, including:
 
@@ -136,9 +136,9 @@ Year-over-year analysis also showed stronger performance during several months i
 
 ## 2. Product Performance
 
-Product analysis showed that **sales volume and revenue do not necessarily identify the same top-performing products**.
+Product analysis showed that sales volume and revenue do not necessarily identify the same top-performing products.
 
-For example, `WORLD WAR 2 GLIDERS ASSTD DESIGNS` generated the highest gross unit volume at more than **110,000 units**, but only approximately **£25K in gross revenue**.
+For example, `WORLD WAR 2 GLIDERS ASSTD DESIGNS` generated the highest gross unit volume at more than 110,000 units, but only approximately £25K in gross revenue.
 
 In comparison, `REGENCY CAKESTAND 3 TIER` generated substantially lower unit volume but ranked as the highest product by net revenue.
 
@@ -160,12 +160,12 @@ Product descriptions were not consistently standardized in the raw data. To prev
 
 Several products initially appeared to have unusually high cancellation rates.
 
-Further investigation revealed that these rates were sometimes driven by **a small number of extremely large cancellation transactions**.
+Further investigation revealed that these rates were sometimes driven by a small number of extremely large cancellation transactions.
 
 For example:
 
-- Stock code `23843` had **80,995 gross units** and **80,995 cancelled units**
-- The entire cancellation volume came from **one cancellation transaction**
+- Stock code `23843` had 80,995 gross units and 80,995 cancelled units
+- The entire cancellation volume came from one cancellation transaction
 
 This demonstrated why aggregate metrics should be investigated before being interpreted as evidence of widespread customer behavior.
 
@@ -173,7 +173,7 @@ This demonstrated why aggregate metrics should be investigated before being inte
 
 ## 3. Customer Analysis & RFM Segmentation
 
-Approximately **84.60% of gross revenue** could be associated with identified customers, providing sufficient coverage for customer-level analysis.
+Approximately 84.60% of gross revenue could be associated with identified customers, providing sufficient coverage for customer-level analysis.
 
 An RFM model was created using:
 
@@ -187,7 +187,7 @@ Customers were scored from 1–5 using PostgreSQL's `NTILE()` window function an
 
 | Segment | Customers | Customer % | Net Revenue | Revenue % |
 |---|---:|---:|---:|---:|
-| Champions | 1,297 | 22.07% | £11.67M | **69.85%** |
+| Champions | 1,297 | 22.07% | £11.67M | 69.85% |
 | Loyal Customers | 702 | 11.94% | £1.86M | 11.11% |
 | Other | 1,293 | 22.00% | £1.02M | 6.11% |
 | At Risk | 351 | 5.97% | £951.7K | 5.70% |
@@ -196,7 +196,7 @@ Customers were scored from 1–5 using PostgreSQL's `NTILE()` window function an
 
 ### Key Customer Finding
 
-**Champions represent only 22.07% of customers but generate 69.85% of identified net revenue.**
+**Champions represent only 22.07% of customers but generate 69.85% of identified net revenue.
 
 This indicates that customer retention is particularly important because a relatively small portion of the customer base drives the majority of revenue.
 
@@ -204,9 +204,9 @@ This indicates that customer retention is particularly important because a relat
 
 ## 4. At-Risk Customer Analysis
 
-The RFM model identified **351 At Risk customers** who historically purchased frequently but had not purchased recently.
+The RFM model identified 351 At Risk customers who historically purchased frequently but had not purchased recently.
 
-Together, these customers generated approximately **£951.7K in historical net revenue**.
+Together, these customers generated approximately £951.7K in historical net revenue.
 
 Examples of high-value At Risk customers included:
 
@@ -261,7 +261,7 @@ The **United Kingdom generates 85.21% of gross revenue**, or approximately **£1
 | France | 622 | £356,944.60 | £573.87 |
 | Australia | 95 | £169,968.11 | £1,789.14 |
 
-The **Netherlands** stands out as a particularly valuable international market. Despite having significantly fewer orders than Germany or France, it generated more than **£554K** in revenue and an average order value of approximately **£2,431**.
+The Netherlands stands out as a particularly valuable international market. Despite having significantly fewer orders than Germany or France, it generated more than **£554K** in revenue and an average order value of approximately £2,431.
 
 Australia, Denmark, Japan, and several other smaller markets also demonstrated relatively high average order values.
 
@@ -273,7 +273,7 @@ Based on the analysis, several opportunities emerge:
 
 ### 1. Protect High-Value Customers
 
-Champions account for nearly **70% of identified net revenue** despite representing only 22% of customers.
+Champions account for nearly 70% of identified net revenue despite representing only 22% of customers.
 
 Retention programs, loyalty benefits, and proactive customer engagement should prioritize this group.
 
@@ -299,7 +299,7 @@ Further analysis could determine whether targeted international marketing or dis
 
 High cancellation percentages should not automatically be interpreted as widespread product-quality problems.
 
-Several extreme rates were driven by individual bulk transactions, demonstrating the importance of analyzing both **cancellation volume and cancellation frequency**.
+Several extreme rates were driven by individual bulk transactions, demonstrating the importance of analyzing both cancellation volume and cancellation frequency.
 
 ---
 
